@@ -8,11 +8,13 @@ dependencies:
     sdk: flutter
   mapbox_gl_platform_interface:
     git:
-      url: https://github.com/tobrun/flutter-mapbox-gl.git
+      url: https://github.com/mvarendorff/flutter-mapbox-gl.git
+      ref: v11-margins-fixed
       path: mapbox_gl_platform_interface
   mapbox_gl_web:
     git:
-      url: https://github.com/tobrun/flutter-mapbox-gl.git
+      url: https://github.com/mvarendorff/flutter-mapbox-gl.git
+      ref: v11-margins-fixed
       path: mapbox_gl_web
 
 flutter:
