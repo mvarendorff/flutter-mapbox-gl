@@ -18,7 +18,7 @@ abstract class MapboxGlPlatform {
     _instances[id] = platform;
   }
 
-  static MapboxGlPlatform getInstance(int id) {
+  static MapboxGlPlatform? getInstance(int id) {
     return _instances[id];
   }
 
@@ -77,16 +77,16 @@ abstract class MapboxGlPlatform {
     throw UnimplementedError('buildView() has not been implemented.');
   }
 
-  Future<CameraPosition> updateMapOptions(
+  Future<CameraPosition?> updateMapOptions(
       Map<String, dynamic> optionsUpdate) async {
     throw UnimplementedError('updateMapOptions() has not been implemented.');
   }
 
-  Future<bool> animateCamera(CameraUpdate cameraUpdate) async {
+  Future<bool?> animateCamera(CameraUpdate cameraUpdate) async {
     throw UnimplementedError('animateCamera() has not been implemented.');
   }
 
-  Future<bool> moveCamera(CameraUpdate cameraUpdate) async {
+  Future<bool?> moveCamera(CameraUpdate cameraUpdate) async {
     throw UnimplementedError('moveCamera() has not been implemented.');
   }
 
@@ -113,11 +113,11 @@ abstract class MapboxGlPlatform {
     throw UnimplementedError('setTelemetryEnabled() has not been implemented.');
   }
 
-  Future<bool> getTelemetryEnabled() async {
+  Future<bool?> getTelemetryEnabled() async {
     throw UnimplementedError('getTelemetryEnabled() has not been implemented.');
   }
   
-  Future<List<Symbol>> addSymbols(List<SymbolOptions> options, [List<Map> data]) async {
+  Future<List<Symbol>> addSymbols(List<SymbolOptions> options, [List<Map>? data]) async {
     throw UnimplementedError('addSymbols() has not been implemented.');
   }
 
@@ -129,7 +129,7 @@ abstract class MapboxGlPlatform {
     throw UnimplementedError('removeSymbol() has not been implemented.');
   }
 
-  Future<Line> addLine(LineOptions options, [Map data]) async {
+  Future<Line> addLine(LineOptions options, [Map? data]) async {
     throw UnimplementedError('addLine() has not been implemented.');
   }
 
@@ -141,7 +141,7 @@ abstract class MapboxGlPlatform {
     throw UnimplementedError('removeLine() has not been implemented.');
   }
 
-  Future<Circle> addCircle(CircleOptions options, [Map data]) async {
+  Future<Circle> addCircle(CircleOptions options, [Map? data]) async {
     throw UnimplementedError('addCircle() has not been implemented.');
   }
 
@@ -165,7 +165,7 @@ abstract class MapboxGlPlatform {
     throw UnimplementedError('removeCircle() has not been implemented.');
   }
 
-  Future<Fill> addFill(FillOptions options, [Map data]) async {
+  Future<Fill> addFill(FillOptions options, [Map? data]) async {
     throw UnimplementedError('addFill() has not been implemented.');
   }
 
@@ -177,13 +177,13 @@ abstract class MapboxGlPlatform {
     throw UnimplementedError('removeFill() has not been implemented.');
   }
 
-  Future<List> queryRenderedFeatures(
+  Future<List?> queryRenderedFeatures(
       Point<double> point, List<String> layerIds, List<Object> filter) async {
     throw UnimplementedError(
         'queryRenderedFeatures() has not been implemented.');
   }
 
-  Future<List> queryRenderedFeaturesInRect(
+  Future<List?> queryRenderedFeaturesInRect(
       Rect rect, List<String> layerIds, String filter) async {
     throw UnimplementedError(
         'queryRenderedFeaturesInRect() has not been implemented.');
@@ -264,7 +264,7 @@ abstract class MapboxGlPlatform {
         'toLatLng() has not been implemented.');
   }
 
-  Future<double> getMetersPerPixelAtLatitude(double latitude) async{
+  Future<double?> getMetersPerPixelAtLatitude(double latitude) async{
     throw UnimplementedError(
         'getMetersPerPixelAtLatitude() has not been implemented.');
   }

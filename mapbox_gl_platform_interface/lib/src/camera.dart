@@ -10,7 +10,7 @@ part of mapbox_gl_platform_interface;
 class CameraPosition {
   const CameraPosition({
     this.bearing = 0.0,
-    @required this.target,
+    required this.target,
     this.tilt = 0.0,
     this.zoom = 0.0,
   })  : assert(bearing != null),
@@ -59,13 +59,13 @@ class CameraPosition {
       };
 
   @visibleForTesting
-  static CameraPosition fromMap(dynamic json) {
+  static CameraPosition? fromMap(dynamic json) {
     if (json == null) {
       return null;
     }
     return CameraPosition(
       bearing: json['bearing'],
-      target: LatLng._fromJson(json['target']),
+      target: LatLng._fromJson(json['target'])!,
       tilt: json['tilt'],
       zoom: json['zoom'],
     );
@@ -149,7 +149,7 @@ class CameraUpdate {
   /// Returns a camera update that modifies the camera zoom level by the
   /// specified amount. The optional [focus] is a screen point whose underlying
   /// geographical location should be invariant, if possible, by the movement.
-  static CameraUpdate zoomBy(double amount, [Offset focus]) {
+  static CameraUpdate zoomBy(double amount, [Offset? focus]) {
     if (focus == null) {
       return CameraUpdate._(<dynamic>['zoomBy', amount]);
     } else {
