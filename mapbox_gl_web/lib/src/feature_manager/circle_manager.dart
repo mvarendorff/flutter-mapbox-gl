@@ -4,11 +4,11 @@ part of mapbox_gl_web;
 typedef CircleTapCallback = void Function(String id);
 
 class CircleManager extends FeatureManager<CircleOptions> {
-  final MapboxMap map;
-  final CircleTapCallback onTap;
+  final MapboxMap? map;
+  final CircleTapCallback? onTap;
 
   CircleManager({
-    @required this.map,
+    required this.map,
     this.onTap,
   }) : super(
           sourceId: 'circle_source',
@@ -19,7 +19,7 @@ class CircleManager extends FeatureManager<CircleOptions> {
 
   @override
   void initLayer() {
-    map.addLayer({
+    map!.addLayer({
       'id': layerId,
       'type': 'circle',
       'source': sourceId,
@@ -36,13 +36,13 @@ class CircleManager extends FeatureManager<CircleOptions> {
   }
 
   @override
-  void onDrag(String featureId, LatLng latLng) {
+  void onDrag(String? featureId, LatLng latLng) {
     update(featureId, CircleOptions(geometry: latLng));
   }
 
   @override
-  void update(String lineId, CircleOptions changes) {
-    Feature olfFeature = getFeature(lineId);
+  void update(String? lineId, CircleOptions changes) {
+    Feature olfFeature = getFeature(lineId)!;
     Feature newFeature = Convert.interpretCircleOptions(changes, olfFeature);
     updateFeature(newFeature);
   }

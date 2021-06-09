@@ -69,7 +69,7 @@ class Convert {
   }
 
   static CameraOptions toCameraOptions(
-      CameraUpdate cameraUpdate, MapboxMap mapboxMap) {
+      CameraUpdate cameraUpdate, MapboxMap? mapboxMap) {
     final List<dynamic> json = cameraUpdate.toJson();
     final type = json[0];
     switch (type) {
@@ -85,7 +85,7 @@ class Convert {
         final target = json[1];
         return CameraOptions(
           center: LngLat(target[1], target[0]),
-          zoom: mapboxMap.getZoom(),
+          zoom: mapboxMap!.getZoom(),
           pitch: mapboxMap.getPitch(),
           bearing: mapboxMap.getBearing(),
         );
@@ -95,7 +95,7 @@ class Convert {
         final top = json[3];
         final right = json[4];
         final bottom = json[5];
-        final camera = mapboxMap.cameraForBounds(
+        final camera = mapboxMap!.cameraForBounds(
             LngLatBounds(
               LngLat(bounds[0][1], bounds[0][0]),
               LngLat(bounds[1][1], bounds[1][0]),
@@ -115,13 +115,13 @@ class Convert {
         return CameraOptions(
           center: LngLat(target[1], target[0]),
           zoom: zoom,
-          pitch: mapboxMap.getPitch(),
+          pitch: mapboxMap!.getPitch(),
           bearing: mapboxMap.getBearing(),
         );
       case 'scrollBy':
         final x = json[1];
         final y = json[2];
-        final mapbox.Point point = mapboxMap.project(mapboxMap.getCenter());
+        final mapbox.Point point = mapboxMap!.project(mapboxMap.getCenter());
         return CameraOptions(
           center: mapboxMap.unproject(mapbox.Point(point.x + x, point.y + y)),
           zoom: mapboxMap.getZoom(),
@@ -133,7 +133,7 @@ class Convert {
         final zoom = json[1];
         if (json.length == 2) {
           return CameraOptions(
-            center: mapboxMap.getCenter(),
+            center: mapboxMap!.getCenter(),
             zoom: mapboxMap.getZoom() + zoom,
             pitch: mapboxMap.getPitch(),
             bearing: mapboxMap.getBearing(),
@@ -141,21 +141,21 @@ class Convert {
         }
         final point = json[2];
         return CameraOptions(
-          center: mapboxMap.unproject(mapbox.Point(point[0], point[1])),
+          center: mapboxMap!.unproject(mapbox.Point(point[0], point[1])),
           zoom: mapboxMap.getZoom() + zoom,
           pitch: mapboxMap.getPitch(),
           bearing: mapboxMap.getBearing(),
         );
       case 'zoomIn':
         return CameraOptions(
-          center: mapboxMap.getCenter(),
+          center: mapboxMap!.getCenter(),
           zoom: mapboxMap.getZoom() + 1,
           pitch: mapboxMap.getPitch(),
           bearing: mapboxMap.getBearing(),
         );
       case 'zoomOut':
         return CameraOptions(
-          center: mapboxMap.getCenter(),
+          center: mapboxMap!.getCenter(),
           zoom: mapboxMap.getZoom() - 1,
           pitch: mapboxMap.getPitch(),
           bearing: mapboxMap.getBearing(),
@@ -163,7 +163,7 @@ class Convert {
       case 'zoomTo':
         final zoom = json[1];
         return CameraOptions(
-          center: mapboxMap.getCenter(),
+          center: mapboxMap!.getCenter(),
           zoom: zoom,
           pitch: mapboxMap.getPitch(),
           bearing: mapboxMap.getBearing(),
@@ -171,7 +171,7 @@ class Convert {
       case 'bearingTo':
         final bearing = json[1];
         return CameraOptions(
-          center: mapboxMap.getCenter(),
+          center: mapboxMap!.getCenter(),
           zoom: mapboxMap.getZoom(),
           pitch: mapboxMap.getPitch(),
           bearing: bearing,
@@ -179,7 +179,7 @@ class Convert {
       case 'tiltTo':
         final tilt = json[1];
         return CameraOptions(
-          center: mapboxMap.getCenter(),
+          center: mapboxMap!.getCenter(),
           zoom: mapboxMap.getZoom(),
           pitch: tilt,
           bearing: mapboxMap.getBearing(),
@@ -203,7 +203,7 @@ class Convert {
       properties['iconRotate'] = options.iconRotate;
     }
     if (options.iconOffset != null) {
-      properties['iconOffset'] = [options.iconOffset.dx, options.iconOffset.dy];
+      properties['iconOffset'] = [options.iconOffset!.dx, options.iconOffset!.dy];
     }
     if (options.iconAnchor != null) {
       properties['iconAnchor'] = options.iconAnchor;
@@ -233,7 +233,7 @@ class Convert {
       properties['textTransform'] = options.textTransform;
     }
     if (options.textOffset != null) {
-      properties['textOffset'] = [options.textOffset.dx, options.textOffset.dy];
+      properties['textOffset'] = [options.textOffset!.dx, options.textOffset!.dy];
     }
     if (options.iconOpacity != null) {
       properties['iconOpacity'] = options.iconOpacity;
@@ -268,7 +268,7 @@ class Convert {
     if (options.geometry != null) {
       geometry = Geometry(
         type: geometry.type,
-        coordinates: [options.geometry.longitude, options.geometry.latitude],
+        coordinates: [options.geometry!.longitude, options.geometry!.latitude],
       );
     }
     if (options.zIndex != null) {
@@ -310,7 +310,7 @@ class Convert {
     if (options.geometry != null) {
       geometry = Geometry(
         type: geometry.type,
-        coordinates: options.geometry
+        coordinates: options.geometry!
             .map((latLng) => [latLng.longitude, latLng.latitude])
             .toList(),
       );
@@ -349,7 +349,7 @@ class Convert {
     if (options.geometry != null) {
       geometry = Geometry(
         type: geometry.type,
-        coordinates: [options.geometry.longitude, options.geometry.latitude],
+        coordinates: [options.geometry!.longitude, options.geometry!.latitude],
       );
     }
     if (options.draggable != null) {
@@ -406,7 +406,7 @@ class Convert {
     if (options.geometry != null) {
       geometry = Geometry(
         type: geometry.type,
-        coordinates: fillGeometryToFeatureGeometry(options.geometry),
+        coordinates: fillGeometryToFeatureGeometry(options.geometry!),
       );
     }
     return feature.copyWith(properties: properties, geometry: geometry);

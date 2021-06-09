@@ -4,11 +4,11 @@ part of mapbox_gl_web;
 typedef SymbolTapCallback = void Function(String id);
 
 class SymbolManager extends FeatureManager<SymbolOptions> {
-  final MapboxMap map;
-  final SymbolTapCallback onTap;
+  final MapboxMap? map;
+  final SymbolTapCallback? onTap;
 
   SymbolManager({
-    @required this.map,
+    required this.map,
     this.onTap,
   }) : super(
           sourceId: 'symbol_source',
@@ -19,7 +19,7 @@ class SymbolManager extends FeatureManager<SymbolOptions> {
 
   @override
   void initLayer() {
-    map.addLayer({
+    map!.addLayer({
       'id': layerId,
       'type': 'symbol',
       'source': sourceId,
@@ -58,7 +58,7 @@ class SymbolManager extends FeatureManager<SymbolOptions> {
       }
     });
 
-    map.on('styleimagemissing', (event) {
+    map!.on('styleimagemissing', (event) {
       if (event.id == '') {
         return;
       }
@@ -66,27 +66,27 @@ class SymbolManager extends FeatureManager<SymbolOptions> {
       var imagePath = density == 1
           ? '/assets/assets/symbols/custom-icon.png'
           : '/assets/assets/symbols/$density.0x/custom-icon.png';
-      map.loadImage(imagePath, (error, image) {
+      map!.loadImage(imagePath, (error, image) {
         if (error != null) throw error;
-        if (!map.hasImage(event.id))
-          map.addImage(event.id, image, {'pixelRatio': density});
+        if (!map!.hasImage(event.id))
+          map!.addImage(event.id, image, {'pixelRatio': density});
       });
     });
   }
 
   @override
-  void update(String lineId, SymbolOptions changes) {
+  void update(String? lineId, SymbolOptions changes) {
     updateAll({lineId: changes});
   }
 
   
-  void updateAll(Map<String, SymbolOptions> changesById) {
+  void updateAll(Map<String?, SymbolOptions?> changesById) {
     List<Feature> featuresWithUpdatedOptions = [];
     changesById.forEach(
       (id, options) => featuresWithUpdatedOptions.add(
         Convert.interpretSymbolOptions(
-          options,
-          getFeature(id)
+          options!,
+          getFeature(id)!
         )
       )
     );
@@ -94,7 +94,7 @@ class SymbolManager extends FeatureManager<SymbolOptions> {
   }
 
   @override
-  void onDrag(String featureId, LatLng latLng) {
+  void onDrag(String? featureId, LatLng latLng) {
     update(featureId, SymbolOptions(geometry: latLng));
   }
 }

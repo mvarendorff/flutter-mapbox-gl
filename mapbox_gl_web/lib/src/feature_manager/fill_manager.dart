@@ -4,11 +4,11 @@ part of mapbox_gl_web;
 typedef FillTapCallback = void Function(String id);
 
 class FillManager extends FeatureManager<FillOptions> {
-  final MapboxMap map;
-  final FillTapCallback onTap;
+  final MapboxMap? map;
+  final FillTapCallback? onTap;
 
   FillManager({
-    @required this.map,
+    required this.map,
     this.onTap,
   }) : super(
           sourceId: 'fill_source',
@@ -19,7 +19,7 @@ class FillManager extends FeatureManager<FillOptions> {
 
   @override
   void initLayer() {
-    map.addLayer({
+    map!.addLayer({
       'id': layerId,
       'type': 'fill',
       'source': sourceId,
@@ -32,8 +32,8 @@ class FillManager extends FeatureManager<FillOptions> {
   }
 
   @override
-  void onDrag(String featureId, LatLng latLng) {
-    Feature oldFeature = getFeature(featureId);
+  void onDrag(String? featureId, LatLng latLng) {
+    Feature oldFeature = getFeature(featureId)!;
     final geometry =
         Convert.featureGeometryToFillGeometry(oldFeature.geometry.coordinates);
     update(
@@ -44,8 +44,8 @@ class FillManager extends FeatureManager<FillOptions> {
   }
 
   @override
-  void update(String featureId, FillOptions changes) {
-    Feature oldFeature = getFeature(featureId);
+  void update(String? featureId, FillOptions changes) {
+    Feature oldFeature = getFeature(featureId)!;
     Feature newFeature = Convert.intepretFillOptions(changes, oldFeature);
     updateFeature(newFeature);
   }
