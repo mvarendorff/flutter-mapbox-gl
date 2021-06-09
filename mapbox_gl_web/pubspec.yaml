@@ -21,7 +21,7 @@ dependencies:
       url: https://github.com/mvarendorff/flutter-mapbox-gl.git
       ref: v11-margins-fixed
       path: mapbox_gl_platform_interface
-  mapbox_gl_dart: ^0.1.5
+  mapbox_gl_dart: ^0.2.0-nullsafety.0
   image: ^3.0.2
 
 dependency_overrides:
