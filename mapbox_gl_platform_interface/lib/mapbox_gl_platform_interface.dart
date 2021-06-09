@@ -1,5 +1,6 @@
 library mapbox_gl_platform_interface;
 
+import 'dart:async';
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
@@ -18,4 +19,3 @@ part 'src/symbol.dart';
 part 'src/fill.dart';
 part 'src/ui.dart';
 part 'src/mapbox_gl_platform_interface.dart';
-

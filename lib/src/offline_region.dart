@@ -4,17 +4,17 @@ part of mapbox_gl;
 /// the download is initiated.
 class OfflineRegionDefinition {
   const OfflineRegionDefinition({
-    @required this.bounds,
-    @required this.mapStyleUrl,
-    @required this.minZoom,
-    @required this.maxZoom,
+    required this.bounds,
+    required this.mapStyleUrl,
+    required this.minZoom,
+    required this.maxZoom,
     this.includeIdeographs = false,
   });
 
-  final LatLngBounds bounds;
-  final String mapStyleUrl;
-  final double minZoom;
-  final double maxZoom;
+  final LatLngBounds? bounds;
+  final String? mapStyleUrl;
+  final double? minZoom;
+  final double? maxZoom;
   final bool includeIdeographs;
 
   @override
@@ -23,7 +23,7 @@ class OfflineRegionDefinition {
 
   Map<String, dynamic> toMap() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['bounds'] = bounds.toList();
+    data['bounds'] = bounds!.toList();
     data['mapStyleUrl'] = mapStyleUrl;
     data['minZoom'] = minZoom;
     data['maxZoom'] = maxZoom;
@@ -46,7 +46,7 @@ class OfflineRegionDefinition {
     );
   }
 
-  static LatLngBounds _latLngBoundsFromList(List<dynamic> json) {
+  static LatLngBounds? _latLngBoundsFromList(List<dynamic>? json) {
     if (json == null) {
       return null;
     }
@@ -57,9 +57,6 @@ class OfflineRegionDefinition {
   }
 
   static LatLng _latLngFromList(dynamic json) {
-    if (json == null) {
-      return null;
-    }
     return LatLng(json[0], json[1]);
   }
 }
@@ -72,13 +69,18 @@ class OfflineRegion {
     this.metadata,
   });
 
-  final int id;
-  final OfflineRegionDefinition definition;
-  final Map<String, dynamic> metadata;
+  final int? id;
+  final OfflineRegionDefinition? definition;
+  final Map<String, dynamic>? metadata;
 
-  factory OfflineRegion.fromMap(Map<String, dynamic> json) {
+  OfflineRegion.empty()
+      : id = null,
+        definition = null,
+        metadata = null;
+
+  factory OfflineRegion.fromMap(Map<String, dynamic>? json) {
     if (json == null) {
-      return null;
+      return OfflineRegion.empty();
     }
 
     return OfflineRegion(

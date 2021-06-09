@@ -98,8 +98,8 @@ class FillOptions {
         'geometry',
         geometry
             ?.map((List<LatLng> latLngList) =>
-                latLngList.map((LatLng latLng) => latLng.toJson())?.toList())
-            ?.toList());
+                latLngList.map((LatLng latLng) => latLng.toJson()).toList())
+            .toList());
     addIfPresent('draggable', draggable);
     return json;
   }
