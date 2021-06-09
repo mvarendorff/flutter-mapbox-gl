@@ -215,7 +215,7 @@ abstract class MapboxGlPlatform {
         'setSymbolIconAllowOverlap() has not been implemented.');
   }
 
-  Future<void> setSymbolIconIgnoment(bool enable) async {
+  Future<void> setSymbolIconIgnorePlacement(bool enable) async {
     throw UnimplementedError(
         'setSymbolIconIgnorePlacement() has not been implemented.');
   }
