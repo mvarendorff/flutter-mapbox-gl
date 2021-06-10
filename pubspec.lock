@@ -65,7 +65,7 @@ packages:
     description:
       path: mapbox_gl_platform_interface
       ref: v11-margins-fixed
-      resolved-ref: c3d7214fc04a8fbba5841736c54a5dcc6749ed53
+      resolved-ref: "5d7b6bf7e5c7287cfe0b0a46d703ff7aa082db5e"
       url: "https://github.com/mvarendorff/flutter-mapbox-gl.git"
     source: git
     version: "0.11.0"
@@ -74,7 +74,7 @@ packages:
     description:
       path: mapbox_gl_web
       ref: v11-margins-fixed
-      resolved-ref: c3d7214fc04a8fbba5841736c54a5dcc6749ed53
+      resolved-ref: "5d7b6bf7e5c7287cfe0b0a46d703ff7aa082db5e"
       url: "https://github.com/mvarendorff/flutter-mapbox-gl.git"
     source: git
     version: "0.11.0"
