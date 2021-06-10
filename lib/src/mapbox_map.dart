@@ -219,7 +219,7 @@ class _MapboxMapState extends State<MapboxMap> {
       'annotationConsumeTapEvents': annotationConsumeTapEvents,
     };
     return _mapboxGlPlatform.buildView(
-        creationParams, onPlatformViewCreated, widget.gestureRecognizers!);
+        creationParams, onPlatformViewCreated, widget.gestureRecognizers);
   }
 
   @override

@@ -248,7 +248,7 @@ class MapboxMapController extends ChangeNotifier {
   Widget buildView(
       Map<String, dynamic> creationParams,
       Function onPlatformViewCreated,
-      Set<Factory<OneSequenceGestureRecognizer>> gestureRecognizers) {
+      Set<Factory<OneSequenceGestureRecognizer>>? gestureRecognizers) {
     return MapboxGlPlatform.getInstance(_id)!
         .buildView(creationParams, onPlatformViewCreated, gestureRecognizers);
   }

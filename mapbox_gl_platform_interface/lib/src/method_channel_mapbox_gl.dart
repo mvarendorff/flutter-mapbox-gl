@@ -123,7 +123,7 @@ class MethodChannelMapboxGl extends MapboxGlPlatform {
   Widget buildView(
       Map<String, dynamic> creationParams,
       Function onPlatformViewCreated,
-      Set<Factory<OneSequenceGestureRecognizer>> gestureRecognizers) {
+      Set<Factory<OneSequenceGestureRecognizer>>? gestureRecognizers) {
     if (defaultTargetPlatform == TargetPlatform.android) {
       return AndroidView(
         viewType: 'plugins.flutter.io/mapbox_gl',
