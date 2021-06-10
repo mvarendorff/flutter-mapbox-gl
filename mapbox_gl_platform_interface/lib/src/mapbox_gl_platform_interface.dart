@@ -119,7 +119,7 @@ abstract class MapboxGlPlatform {
   }
 
   Future<List<Symbol>> addSymbols(List<SymbolOptions> options,
-      [List<Map>? data]) async {
+      [List<Map?>? data]) async {
     throw UnimplementedError('addSymbols() has not been implemented.');
   }
 

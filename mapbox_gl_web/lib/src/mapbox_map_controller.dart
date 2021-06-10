@@ -28,7 +28,8 @@ class MapboxMapController extends MapboxGlPlatform
       Function onPlatformViewCreated,
       Set<Factory<OneSequenceGestureRecognizer>>? gestureRecognizers) {
     _creationParams = creationParams;
-    _registerViewFactory(onPlatformViewCreated as dynamic Function(int), this.hashCode);
+    _registerViewFactory(
+        onPlatformViewCreated as dynamic Function(int), this.hashCode);
     return HtmlElementView(
         viewType: 'plugins.flutter.io/mapbox_gl_${this.hashCode}');
   }
@@ -135,7 +136,7 @@ class MapboxMapController extends MapboxGlPlatform
 
   @override
   Future<List<Symbol>> addSymbols(List<SymbolOptions?> options,
-      [List<Map>? data]) async {
+      [List<Map?>? data]) async {
     Map<String, SymbolOptions?> optionsById = Map.fromIterable(options,
         key: (o) => symbolManager.add(Feature(
               geometry: Geometry(
@@ -283,8 +284,10 @@ class MapboxMapController extends MapboxGlPlatform
   Future<LatLngBounds> getVisibleRegion() async {
     final bounds = _map!.getBounds();
     return LatLngBounds(
-      southwest: LatLng(bounds.getSouthWest().lat as double, bounds.getSouthWest().lng as double),
-      northeast: LatLng(bounds.getNorthEast().lat as double, bounds.getNorthEast().lng as double),
+      southwest: LatLng(bounds.getSouthWest().lat as double,
+          bounds.getSouthWest().lng as double),
+      northeast: LatLng(bounds.getNorthEast().lat as double,
+          bounds.getNorthEast().lng as double),
     );
   }
 
@@ -343,10 +346,14 @@ class MapboxMapController extends MapboxGlPlatform
   }
 
   void _onStyleLoaded(_) {
-    symbolManager = SymbolManager(map: _map, onTap: onSymbolTappedPlatform as void Function(String)?);
-    lineManager = LineManager(map: _map, onTap: onLineTappedPlatform as void Function(String)?);
-    circleManager = CircleManager(map: _map, onTap: onCircleTappedPlatform as void Function(String)?);
-    fillManager = FillManager(map: _map, onTap: onFillTappedPlatform as void Function(String)?);
+    symbolManager = SymbolManager(
+        map: _map, onTap: onSymbolTappedPlatform as void Function(String)?);
+    lineManager = LineManager(
+        map: _map, onTap: onLineTappedPlatform as void Function(String)?);
+    circleManager = CircleManager(
+        map: _map, onTap: onCircleTappedPlatform as void Function(String)?);
+    fillManager = FillManager(
+        map: _map, onTap: onFillTappedPlatform as void Function(String)?);
     onMapStyleLoadedPlatform(null);
     _map!.on('click', _onMapClick);
     // long click not available in web, so it is mapped to double click
@@ -668,8 +675,9 @@ class MapboxMapController extends MapboxGlPlatform
   @override
   Future<List<Point>> toScreenLocationBatch(Iterable<LatLng> latLngs) async {
     return latLngs.map((latLng) {
-        var screenPosition = _map!.project(LngLat(latLng.longitude, latLng.latitude));
-        return Point(screenPosition.x.round(), screenPosition.y.round());
+      var screenPosition =
+          _map!.project(LngLat(latLng.longitude, latLng.latitude));
+      return Point(screenPosition.x.round(), screenPosition.y.round());
     }).toList(growable: false);
   }
 

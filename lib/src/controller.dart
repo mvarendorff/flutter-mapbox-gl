@@ -368,7 +368,7 @@ class MapboxMapController extends ChangeNotifier {
         options.map((o) => SymbolOptions.defaultOptions.copyWith(o)).toList();
 
     final symbols = await MapboxGlPlatform.getInstance(_id)!
-        .addSymbols(effectiveOptions, data as List<Map<dynamic, dynamic>>?);
+        .addSymbols(effectiveOptions, data);
     symbols.forEach((s) => _symbols[s.id] = s);
     notifyListeners();
     return symbols;
